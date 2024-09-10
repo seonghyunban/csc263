@@ -38,7 +38,7 @@ class MaxHeap:
 
         if lrg != i:
             self.A[i] , self.A[lrg] = self.A[lrg], self.A[i]
-            self.Max_heapify(lrg)
+            self.Max_Heapify(lrg)
 
     def Insert(self, x):
         i = self.size
@@ -123,7 +123,7 @@ def Extract_Median(A: list):
 
     meds = [A[0], (A[0] + A[1]) / 2]
 
-    if A[1] <= A[2]:
+    if A[0] <= A[1]:
         lower.Insert(A[0])
         upper.Insert(A[1])
     else:
@@ -153,7 +153,13 @@ def answer(A):
     meds = []
     for i in range(len(A)):
         cur = A[:i + 1]
-        meds.append(np.median(cur))
+        cur.sort()
+        if i % 2 == 0:
+            meds.append(cur[i // 2])
+        else:
+            a = i // 2
+            b = i // 2 + 1
+            meds.append((cur[a] + cur[b]) / 2)
     return meds
 
 test = [1, 2, 3, 4, 5, 6, 7, 8, 9]
